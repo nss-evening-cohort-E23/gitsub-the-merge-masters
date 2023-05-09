@@ -21,7 +21,7 @@ a {
 
 .content-div{
   display:flex;
-  margin: 30px;
+  padding: 100px;
 }
 
 .profile-div{
@@ -31,7 +31,6 @@ a {
   color:#e6edf3;
   border: #e6edf3 solid 1px;
   padding: 20px;
-  margin: 15px;
 }
 
 .teammate-task{
@@ -39,20 +38,4 @@ a {
   width: 80%;
   border: #e6edf3 solid 1px;
   padding: 20px;
-  margin: 15px;
-}
-
-.navbar{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  font-size: medium;
-  background-color:#161b22;
-  color:#e6edf3;
-  border: #e6edf3 solid 1px;
-  margin: 40px;
-}
-
-.teammate-task{
-  color:yellow;
 }

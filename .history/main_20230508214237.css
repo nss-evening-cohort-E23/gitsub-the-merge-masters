@@ -1,0 +1,12 @@
+body {
+  background-color: darkkhaki;
+}
+
+.footer-div{
+  display:flex;
+  align-content: flex-start;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-evenly;
+  align-items: center;
+}
