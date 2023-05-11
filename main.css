@@ -34,6 +34,29 @@ a {
   margin: 15px;
 }
 
+.form-control {
+  background-color:black;
+}
+
+.card {
+  background-color: black;
+  border-color: grey;
+  color: yellow;
+}
+
+
+#repos-id {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.repo-cards {
+  flex-direction: column;
+  width: 100%;
+}
+
+
 .teammate-task{
   display: flex;
   width: 80%;
