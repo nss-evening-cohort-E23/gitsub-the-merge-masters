@@ -7,15 +7,16 @@ arrRepos = [
     id: 1,
     name: "Pet Adoption",
     description:"",
-    penned: true,
+    pinned: true,
   },
   {
     id: 2,
     name: "Product Cards",
     description:"",
-    penned: false,
+    pinned: false,
   }
 ];
+arrPinned =[];
 arrProjects=[];
 arrPackages= [];
 
@@ -30,9 +31,11 @@ const cardsOnDom = (array) => {
   let domString =  ""; 
   for (const card of array) { 
     domString += `<div class="card w-50">
-  <div class="card-body">
-    <h5 class="card-title">${card.name}</h5>
-    <p class="card-text">${card.description}</a>
+    <div class="card-body">
+      <h5 class="card-title">${card.name}</h5>
+      <p class="card-text">${card.description}</p>
+      <a href="#" class="btn btn-primary" id="btnPinRepo">Pin</a>
+    </div>
   </div>`
   }
   renderToDom("#repos-id", domString); 
@@ -45,7 +48,42 @@ cardsOnDom(arrRepos)
 
 //function to pin repo cards on the .teammate-task(index.html) #overview-repos div Fernanda
 
+const btnPin = document.querySelector("#btnPinRepo")
+
+btnPin.addEventListener('click', (array) => {
+  for (const cards of array){
+    card.pinned = true;
+  }
+})
+
 //function to render the pinned repo cards on the .teammate-task(index.html) #overview-repos div Fernanda
+
+const pinnedRepos = (array) => {
+  for (const card of array){
+    if(`${card.pinned}`){
+      arrPinned.push(card)
+    }
+    return arrPinned
+  }
+}
+
+pinnedRepos(arrRepos);
+ 
+const pinnedOnDom = (array) => {
+  let pinnedCard =""
+  for (const card of array) {
+    pinnedCard += `<div class="card w-50">
+    <div class="card-body">
+      <h5 class="card-title">${card.name}</h5>
+      <p class="card-text">${card.description}</p>
+    </div>
+  </div>`
+  }
+  renderToDom("#overview-repos", pinnedCard)
+}
+
+pinnedOnDom(arrPinned)
+
 
 //function to render project cards on the .teammate-task(projects.html) #projects-id div Kyle
 
