@@ -25,11 +25,12 @@ const arrRepos = [
     pinned: false,
   }
 ];
-arrProjects = [
+const arrProjects = [
   {
     id: 1,
     name: "Example 1",
     description: "This is an example description",
+    type: "Public",
   }
 ];
 arrPackages = [];
@@ -71,7 +72,7 @@ const createRepo = (e) => {
     type: document.querySelector("#type").value
   }
   arrRepos.push(newRepoObj);
-  cardsOnDom(arrRepos, "#repos-id");
+  cardsOnDom("#repos-id", arrRepos);
   form.reset();
 }
 
@@ -101,6 +102,21 @@ const projectsOnDom = (divId, array) => {
 }
 
 //function to create a new project card with a form on the .teammate-task(projects.html) #projects-id div Kyle
+
+const createProject = (e) => {
+  e.preventDefault();
+
+  const newProjectObj = {
+    id: arrProjects.length + 1,
+    name: document.querySelector("#name").value,
+    description: document.querySelector("#description").value,
+    type: document.querySelector("#type").value
+  }
+  arrProjects.push(newProjectObj);
+  projectsOnDom("#projects-id", arrProjects);
+  form.reset();
+}
+
 
 //function to render packages cards on the .teammate-task(packages.html) #packages-id div Luca
 
