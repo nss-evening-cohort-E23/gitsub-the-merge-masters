@@ -54,3 +54,24 @@ cardsOnDom(arrRepos)
 //function to render packages cards on the .teammate-task(packages.html) #packages-id div Luca
 
 //function to create a new package card with a form on the .teammate-task(packages.html) #packages-id div Luca
+
+const form = document.querySelector('form');
+
+
+const createNewPackage =  (e) =>{
+
+e.preventDefault();
+
+const newPackageObj = {
+
+  id: pets.length + 1,
+  name: document.querySelector('#name').value,
+  description: 
+  penned:
+
+}
+
+pets.push(newPackageObj);
+cardsOnDom(arrPackages);
+form.reset();
+}
