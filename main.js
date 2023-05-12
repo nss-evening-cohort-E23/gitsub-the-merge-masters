@@ -65,7 +65,8 @@ const cardsOnDom = (divId, array) => {
 }
 
 function searchRepo(e) {
-  var matchedRepos = arrRepos.filter(x => x.name.toLowerCase().indexOf(e.target.value.toLowerCase()) !== -1);
+  var matchedRepos = arrRepos.filter(x => x.name.toLowerCase().indexOf(e.target.value.toLowerCase()) !== -1
+    || x.description.toLowerCase().indexOf(e.target.value.toLowerCase()) !== -1);
   cardsOnDom("#repos-id", matchedRepos);
 }
 
