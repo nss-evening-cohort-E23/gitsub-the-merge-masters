@@ -9,6 +9,7 @@ const arrRepos = [
     description: "Fantastic website where the user could buy a Pet they love to by just one click",
     type: "Private",
     pinned: true,
+    starred: false
   },
   {
     id: 2,
@@ -16,6 +17,7 @@ const arrRepos = [
     description: "It is a kind of a Shopping Website",
     type: "Private",
     pinned: false,
+    starred: false
   },
   {
     id: 3,
@@ -23,6 +25,7 @@ const arrRepos = [
     description: "This website is FUN ! allows the user to add students from the harry potter movie and also allows to expel them to the Voldemont's Army ",
     type: "Public",
     pinned: false,
+    starred: true
   }
 ];
 const arrProjects = [
@@ -47,16 +50,42 @@ const cardsOnDom = (divId, array) => {
   for (const card of array) {
     domString += `<div class="card">
   <div class="card-body">
-    <h5 class="card-title">${card.name}</h5>
+    <div class="title"><h5 class="card-title">${card.name}</h5>
+      <div class="actions">
+        <i class="bi bi-${card.pinned ? 'pin-fill' : 'pin'}" onclick="pinRepo(${card.id})"></i>
+        <i class="bi bi-${card.starred ? 'star-fill' : 'star'}" onclick="starRepo(${card.id})"></i>
+        <i class="bi bi-trash" onclick="deleteRepo(${card.id})" id="delete--${card.id}"></i></div>
+    </div>
     <p class="card-text">${card.description}</p>
     <p class="card-text">${card.type}</p>
-    <button class="btn btn-danger" id="delete--${card.id}">Delete</button>
   </div>
   </div>`
   }
   renderToDom(divId, domString);
 }
 
+function searchRepo(e) {
+  var matchedRepos = arrRepos.filter(x => x.name.toLowerCase().indexOf(e.target.value.toLowerCase()) !== -1);
+  cardsOnDom("#repos-id", matchedRepos);
+}
+
+const starRepo = (cardId) => {
+  var repo = arrRepos.find(x => x.id === cardId);
+  repo.starred = !repo.starred;
+  cardsOnDom("#repos-id", arrRepos);
+}
+
+const pinRepo = (cardId) => {
+  var repo = arrRepos.find(x => x.id === cardId);
+  repo.pinned = !repo.pinned;
+  cardsOnDom("#repos-id", arrRepos);
+}
+
+const deleteRepo = (cardId) => {
+  var repoId = arrRepos.findIndex(x => x.id === cardId);
+  arrRepos.splice(repoId, 1);
+  cardsOnDom("#repos-id", arrRepos);
+}
 
 //function to create a new repo card with a form on the .teammate-task(repo.html) #repos-id div Kirthana
 

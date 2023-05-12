@@ -44,6 +44,21 @@ a {
   color: yellow;
 }
 
+.title {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+i {
+  font-size: 20px;
+  margin: 10px;
+  cursor: pointer;
+}
+
+#search-btn {
+  margin-bottom: 20px;
+}
 
 #repos-id {
   display: flex;
@@ -66,7 +81,6 @@ a {
   flex-direction: column;
   width: 100%;
 }
-
 
 .teammate-task {
   display: flex;
