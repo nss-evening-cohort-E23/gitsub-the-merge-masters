@@ -33,7 +33,13 @@ arrProjects = [
     description: "This is an example description",
   }
 ];
-arrPackages = [];
+arrPackages = [
+  {
+    id: 1,
+    name: "Example 1",
+    description: "This is a package example",
+  }
+];
 
 //function to render repo cards on the .teammate-task(repo.html) #repos-id div Kirthana
 
@@ -119,7 +125,39 @@ const packagesOnDom = (divId, array) => {
   }
   renderToDom(divId, domString);
 }
+
 //function to create a new package card with a form on the .teammate-task(packages.html) #packages-id div Luca
+
+const formOnDom = (divId) => {
+  let domString = 
+  `<div class="form-package-cards">
+    <div id="form-packages-id"></div>
+    <form class="row g-3">
+      <div class="mb-3">
+        <label for="formExampleInput" class="form-label">New Package</label>
+        <input type="text" class="form-control" id="name" placeholder="Example input placeholder">
+      </div>
+      <div class="col-12">
+        <label for="description" class="form-label">Description</label>
+        <input type="text" class="form-control" id="description">
+      </div>
+      <div class="col-auto">
+        <label for="inputState" class="form-label">Public or Private</label>
+        <select id="type" class="form-select">
+          <option selected>Choose</option>
+          <option>Private</option>
+          <option>Public</option>
+        </select>
+      </div>
+      <div class="col-12">
+        <button type="submit" class="btn btn-primary">Create New Repo</button>
+      </div>
+    </form>
+  </div>`
+  
+  renderToDom(divId, domString);
+}
+
 
 const addPackage = document.querySelector('form');
 
@@ -133,10 +171,10 @@ const newPackageObj = {
     id: arrPackages.length + 1,
     name: document.querySelector("#name").value,
     description: document.querySelector("#description").value,
-    type: document.querySelector("#type").value
+
 }
 
 arrPackages.push(newPackageObj);
-cardsOnDom(arrPackages);
+cardsOnDom(arrPackages, "#packages-id");
 form.reset();
 }
