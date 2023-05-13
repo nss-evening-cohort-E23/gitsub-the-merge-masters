@@ -137,19 +137,35 @@ const pinnedRepos = (array) => {
 }
 
 // pinnedRepos(arrRepos);
+// <<<<<<< fb-render
  
-const pinnedOnDom = (array) => {
-  let pinnedCard =""
-  for (const card of array) {
-    pinnedCard += `<div class="card w-50">
-    <div class="card-body">
-      <h5 class="card-title">${card.name}</h5>
-      <p class="card-text">${card.description}</p>
-    </div>
-  </div>`
-  }
-  renderToDom("#overview-repos", pinnedCard)
-}
+// const pinnedOnDom = (array) => {
+//   let pinnedCard =""
+//   for (const card of array) {
+//     pinnedCard += `<div class="card w-50">
+//     <div class="card-body">
+//       <h5 class="card-title">${card.name}</h5>
+//       <p class="card-text">${card.description}</p>
+//     </div>
+//   </div>`
+//   }
+//   renderToDom("#overview-repos", pinnedCard)
+// }
+// =======
+
+// // const pinnedOnDom = (array) => {
+// //   let pinnedCard =""
+// //   for (const card of array) {
+// //     pinnedCard += `<div class="card w-50">
+// //     <div class="card-body">
+// //       <h5 class="card-title">${card.name}</h5>
+// //       <p class="card-text">${card.description}</p>
+// //     </div>
+// //   </div>`
+// //   }
+// //   renderToDom("#overview-repos", pinnedCard)
+// // }
+// >>>>>>> develop
 
 // pinnedOnDom(arrPinned)
 
@@ -163,12 +179,36 @@ const projectsOnDom = (divId, array) => {
     <h5 class="card-title">${card.name}</h5>
     <p class="card-text">${card.description}</p>
     <p class="card-text">${card.type}</p>
-    <button class="btn btn-danger" id="delete--${card.id}">Delete</button>
+    <button class="btn btn-danger" onclick="deleteCard(${card.id})" id="delete--${card.id}">Delete</button>
   </div>
   </div>`
   }
   renderToDom(divId, domString);
 }
+
+
+const searchProject = (e) => {
+  const eventLC = e.target.value.toLowerCase();
+  const searchResult = arrProjects.filter(filtering =>
+    filtering.name.toLowerCase().includes(eventLC) ||
+    filtering.description.toLowerCase().includes(eventLC))
+
+  projectsOnDom("#projects-id", searchResult);
+}
+
+const deleteCard = (cardId) => {
+  // Find the index of the card with the given ID in the array
+  const cardIndex = arrProjects.findIndex((card) => card.id === cardId);
+
+  if (cardIndex !== -1) {
+    // Remove the card from the array
+    arrProjects.splice(cardIndex, 1);
+
+    // Render the updated cards on the DOM
+    projectsOnDom("#projects-id", arrProjects);
+  }
+};
+
 
 //function to create a new project card with a form on the .teammate-task(projects.html) #projects-id div Kyle
 
@@ -188,7 +228,7 @@ const createProject = (e) => {
 
 
 //function to render packages cards on the .teammate-task(packages.html) #packages-id div Luca
- 
+
 const packagesOnDom = (divId, array) => {
   let packagesString = "";
   for (const card of array) {
@@ -207,8 +247,8 @@ const packagesOnDom = (divId, array) => {
 //function to create a new package card with a form on the .teammate-task(packages.html) #packages-id div Luca
 
 const formOnDom = (divId) => {
-  let formString = 
-  `<div class="form-package-cards">
+  let formString =
+    `<div class="form-package-cards">
     <div id="form-packages-id"></div>
     <form class="row g-3">
       <div class="mb-3">
@@ -232,7 +272,7 @@ const formOnDom = (divId) => {
       </div>
     </form>
   </div>`
-  
+
   renderToDom(divId, formString);
 }
 
@@ -240,19 +280,19 @@ const formOnDom = (divId) => {
 const addPackage = document.querySelector('form');
 
 
-const createNewPackage =  (e) =>{
+const createNewPackage = (e) => {
 
-e.preventDefault();
+  e.preventDefault();
 
-const newPackageObj = {
+  const newPackageObj = {
 
     id: arrPackages.length + 1,
     name: document.querySelector("#name").value,
     description: document.querySelector("#description").value,
 
-}
+  }
 
-arrPackages.push(newPackageObj);
-cardsOnDom(arrPackages, "#packages-id");
-form.reset();
+  arrPackages.push(newPackageObj);
+  cardsOnDom(arrPackages, "#packages-id");
+  form.reset();
 }
