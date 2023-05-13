@@ -117,8 +117,6 @@ const createRepo = (e) => {
 
 //function to pin repo cards on the .teammate-task(index.html) #overview-repos div Fernanda
 
-// pinRepo('#overview-repos')
-
 // const btnPin = document.querySelector("#btnPinRepo")
 
 // btnPin.addEventListener('click', (array) => {
@@ -129,29 +127,29 @@ const createRepo = (e) => {
 
 //function to render the pinned repo cards on the .teammate-task(index.html) #overview-repos div Fernanda
 
-// const pinnedRepos = (array) => {
-//   for (const card of array){
-//     if(card.pinned){
-//       arrPinned.push(card)
-//     }
-//     return arrPinned
-//   }
-// }
+const pinnedRepos = (array) => {
+  for (const card of array){
+    if(card.pinned){
+      arrPinned.push(card)
+    }
+    return arrPinned
+  }
+}
 
 // pinnedRepos(arrRepos);
  
-// const pinnedOnDom = (array) => {
-//   let pinnedCard =""
-//   for (const card of array) {
-//     pinnedCard += `<div class="card w-50">
-//     <div class="card-body">
-//       <h5 class="card-title">${card.name}</h5>
-//       <p class="card-text">${card.description}</p>
-//     </div>
-//   </div>`
-//   }
-//   renderToDom("#overview-repos", pinnedCard)
-// }
+const pinnedOnDom = (array) => {
+  let pinnedCard =""
+  for (const card of array) {
+    pinnedCard += `<div class="card w-50">
+    <div class="card-body">
+      <h5 class="card-title">${card.name}</h5>
+      <p class="card-text">${card.description}</p>
+    </div>
+  </div>`
+  }
+  renderToDom("#overview-repos", pinnedCard)
+}
 
 // pinnedOnDom(arrPinned)
 
