@@ -1,4 +1,5 @@
-console.log(' Iam here');
+console.log(' Hi everyone');
+console.log("Hello")
 
 //data
 
@@ -36,8 +37,15 @@ const arrProjects = [
     type: "Public",
   }
 ];
-arrPackages = [];
-arrPinned = [];
+
+arrPackages = [
+  {
+    id: 1,
+    name: "Example 1",
+    description: "This is a package example",
+  }
+];
+
 
 //function to render repo cards on the .teammate-task(repo.html) #repos-id div Kirthana
 
@@ -180,5 +188,71 @@ const createProject = (e) => {
 
 
 //function to render packages cards on the .teammate-task(packages.html) #packages-id div Luca
+ 
+const packagesOnDom = (divId, array) => {
+  let domString = "";
+  for (const card of array) {
+    domString += `<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">${card.name}</h5>
+    <p class="card-text">${card.description}</p>
+    <p class="card-text">${card.type}</p>
+    <button class="btn btn-danger" id="delete--${card.id}">Delete</button>
+  </div>
+  </div>`
+  }
+  renderToDom(divId, domString);
+}
 
 //function to create a new package card with a form on the .teammate-task(packages.html) #packages-id div Luca
+
+const formOnDom = (divId) => {
+  let domString = 
+  `<div class="form-package-cards">
+    <div id="form-packages-id"></div>
+    <form class="row g-3">
+      <div class="mb-3">
+        <label for="formExampleInput" class="form-label">New Package</label>
+        <input type="text" class="form-control" id="name" placeholder="Example input placeholder">
+      </div>
+      <div class="col-12">
+        <label for="description" class="form-label">Description</label>
+        <input type="text" class="form-control" id="description">
+      </div>
+      <div class="col-auto">
+        <label for="inputState" class="form-label">Public or Private</label>
+        <select id="type" class="form-select">
+          <option selected>Choose</option>
+          <option>Private</option>
+          <option>Public</option>
+        </select>
+      </div>
+      <div class="col-12">
+        <button type="submit" class="btn btn-primary">Create New Repo</button>
+      </div>
+    </form>
+  </div>`
+  
+  renderToDom(divId, domString);
+}
+
+
+const addPackage = document.querySelector('form');
+
+
+const createNewPackage =  (e) =>{
+
+e.preventDefault();
+
+const newPackageObj = {
+
+    id: arrPackages.length + 1,
+    name: document.querySelector("#name").value,
+    description: document.querySelector("#description").value,
+
+}
+
+arrPackages.push(newPackageObj);
+cardsOnDom(arrPackages, "#packages-id");
+form.reset();
+}
