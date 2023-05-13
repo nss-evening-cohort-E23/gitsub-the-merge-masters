@@ -10,6 +10,7 @@ const arrRepos = [
     description: "Fantastic website where the user could buy a Pet they love to by just one click",
     type: "Private",
     pinned: true,
+    starred: false
   },
   {
     id: 2,
@@ -17,6 +18,7 @@ const arrRepos = [
     description: "It is a kind of a Shopping Website",
     type: "Private",
     pinned: false,
+    starred: false
   },
   {
     id: 3,
@@ -24,15 +26,18 @@ const arrRepos = [
     description: "This website is FUN ! allows the user to add students from the harry potter movie and also allows to expel them to the Voldemont's Army ",
     type: "Public",
     pinned: false,
+    starred: true
   }
 ];
-arrProjects = [
+const arrProjects = [
   {
     id: 1,
     name: "Example 1",
     description: "This is an example description",
+    type: "Public",
   }
 ];
+
 arrPackages = [
   {
     id: 1,
@@ -40,6 +45,7 @@ arrPackages = [
     description: "This is a package example",
   }
 ];
+
 
 //function to render repo cards on the .teammate-task(repo.html) #repos-id div Kirthana
 
@@ -53,16 +59,43 @@ const cardsOnDom = (divId, array) => {
   for (const card of array) {
     domString += `<div class="card">
   <div class="card-body">
-    <h5 class="card-title">${card.name}</h5>
+    <div class="title"><h5 class="card-title">${card.name}</h5>
+      <div class="actions">
+        <i class="bi bi-${card.pinned ? 'pin-fill' : 'pin'}" onclick="pinRepo(${card.id})"></i>
+        <i class="bi bi-${card.starred ? 'star-fill' : 'star'}" onclick="starRepo(${card.id})"></i>
+        <i class="bi bi-trash" onclick="deleteRepo(${card.id})" id="delete--${card.id}"></i></div>
+    </div>
     <p class="card-text">${card.description}</p>
     <p class="card-text">${card.type}</p>
-    <button class="btn btn-danger" id="delete--${card.id}">Delete</button>
   </div>
   </div>`
   }
   renderToDom(divId, domString);
 }
 
+function searchRepo(e) {
+  var matchedRepos = arrRepos.filter(x => x.name.toLowerCase().indexOf(e.target.value.toLowerCase()) !== -1
+    || x.description.toLowerCase().indexOf(e.target.value.toLowerCase()) !== -1);
+  cardsOnDom("#repos-id", matchedRepos);
+}
+
+const starRepo = (cardId) => {
+  var repo = arrRepos.find(x => x.id === cardId);
+  repo.starred = !repo.starred;
+  cardsOnDom("#repos-id", arrRepos);
+}
+
+const pinRepo = (cardId) => {
+  var repo = arrRepos.find(x => x.id === cardId);
+  repo.pinned = !repo.pinned;
+  cardsOnDom("#repos-id", arrRepos);
+}
+
+const deleteRepo = (cardId) => {
+  var repoId = arrRepos.findIndex(x => x.id === cardId);
+  arrRepos.splice(repoId, 1);
+  cardsOnDom("#repos-id", arrRepos);
+}
 
 //function to create a new repo card with a form on the .teammate-task(repo.html) #repos-id div Kirthana
 
@@ -78,17 +111,47 @@ const createRepo = (e) => {
     type: document.querySelector("#type").value
   }
   arrRepos.push(newRepoObj);
-  cardsOnDom(arrRepos, "#repos-id");
+  cardsOnDom("#repos-id", arrRepos);
   form.reset();
 }
 
-
-
-
-
 //function to pin repo cards on the .teammate-task(index.html) #overview-repos div Fernanda
 
+const btnPin = document.querySelector("#btnPinRepo")
+
+btnPin.addEventListener('click', (array) => {
+  for (const cards of array){
+    card.pinned = true;
+  }
+})
+
 //function to render the pinned repo cards on the .teammate-task(index.html) #overview-repos div Fernanda
+
+const pinnedRepos = (array) => {
+  for (const card of array){
+    if(`${card.pinned}`){
+      arrPinned.push(card)
+    }
+    return arrPinned
+  }
+}
+
+pinnedRepos(arrRepos);
+ 
+const pinnedOnDom = (array) => {
+  let pinnedCard =""
+  for (const card of array) {
+    pinnedCard += `<div class="card w-50">
+    <div class="card-body">
+      <h5 class="card-title">${card.name}</h5>
+      <p class="card-text">${card.description}</p>
+    </div>
+  </div>`
+  }
+  renderToDom("#overview-repos", pinnedCard)
+}
+
+pinnedOnDom(arrPinned)
 
 //function to render project cards on the .teammate-task(projects.html) #projects-id div Kyle
 
@@ -108,6 +171,21 @@ const projectsOnDom = (divId, array) => {
 }
 
 //function to create a new project card with a form on the .teammate-task(projects.html) #projects-id div Kyle
+
+const createProject = (e) => {
+  e.preventDefault();
+
+  const newProjectObj = {
+    id: arrProjects.length + 1,
+    name: document.querySelector("#name").value,
+    description: document.querySelector("#description").value,
+    type: document.querySelector("#type").value
+  }
+  arrProjects.push(newProjectObj);
+  projectsOnDom("#projects-id", arrProjects);
+  form.reset();
+}
+
 
 //function to render packages cards on the .teammate-task(packages.html) #packages-id div Luca
  
