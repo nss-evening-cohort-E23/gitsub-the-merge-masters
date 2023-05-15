@@ -60,6 +60,8 @@ i {
   display:flex;
   margin-bottom: 20px;
   width:80%;
+  background-color:black;
+  color:white;
 }
 
 #repos-id {
@@ -83,6 +85,28 @@ i {
   flex-direction: column;
   width: 100%;
 }
+
+#name{
+  background-color:black;
+  color:white;
+}
+
+#description{
+  background-color:black;
+  color:white;
+}
+
+
+#type{
+  background-color:black;
+  color:white;
+}
+
+#submit{
+  background-color:green;
+  border-color:black;
+}
+
 
 .teammate-task {
   display: flex;
