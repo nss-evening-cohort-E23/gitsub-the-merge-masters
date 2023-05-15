@@ -24,9 +24,7 @@ Any user
 <>
 
 ## Link to figma
-<>
+<https://www.figma.com/file/MzG4aLmYNNZaAtZCPWWYJV/The-Merge-Masters?type=whiteboard&node-id=0-1&t=YO0vl1aNnLAcjDyk-0>
 
 ## Link to Loom video walkthrough of the app
 <>
-
-
