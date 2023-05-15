@@ -57,7 +57,9 @@ i {
 }
 
 #search-btn {
+  display:flex;
   margin-bottom: 20px;
+  width:80%;
 }
 
 #repos-id {
