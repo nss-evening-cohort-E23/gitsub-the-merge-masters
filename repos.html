@@ -42,25 +42,23 @@
         placerat semper quam nec laoreet. Nulla facilisi.</p>
     </div>
     <div class="teammate-task repo-cards">
-      <div class="input-group rounded" id="search-btn">
-        <input class="form-control rounded" placeholder="Search" aria-label="Search"
-          aria-describedby="search-addon" oninput="searchRepo(event)"/>
-        <span class="input-group-text border-0" id="search-addon">
-          <i class="bi bi-search"></i>
-        </span>
+      <div class="input-group rounded">
+        <input class="form-control rounded" id="search-btn" placeholder="Search" aria-label="Search"
+          aria-describedby="search-addon" oninput="searchRepo(event)">
+        <i class="bi bi-search"> </i>
       </div>
       <div id="repos-id"></div>
       <form class="row g-3">
         <div class="mb-3">
-          <label for="formGroupExampleInput" class="form-label">Repo Name</label>
-          <input type="text" class="form-control" id="name" placeholder="Example input placeholder">
+          <label for="name" class="form-label">Repo Name</label>
+          <input type="text" class="form-control" id="name">
         </div>
         <div class="col-12">
           <label for="description" class="form-label">Description</label>
           <input type="text" class="form-control" id="description">
         </div>
         <div class="col-auto ">
-          <label for="inputState" class="form-label">Type</label>
+          <label for="type" class="form-label">Type</label>
           <select id="type" class="form-select">
             <option selected>Choose</option>
             <option>Private</option>
@@ -68,7 +66,7 @@
           </select>
         </div>
         <div class="col-12">
-          <button type="submit" class="btn btn-primary">Create New Repo</button>
+          <button type="submit" class="btn btn-primary" id="submit">Create New Repo</button>
         </div>
       </form>
     </div>
